@@ -14,7 +14,8 @@ def read_csv_sms(file_name):
                  usecols=['phone','submission_date','gate_status'],
                  dtype={'phone': str})#Читаем файло
 
-data=read_csv_sms('1028258_2017-01-01_00_00_00_2017-03-03_23_59_59_59888.csv')
+file_name = input("Иvя файла: ")
+data=read_csv_sms(file_name)
 
 
 #предобработка
@@ -42,7 +43,7 @@ print('Количество плохих номеров',len(bad_phones))
 
 #пишем в файл
 with open('bad_phones.csv', 'w') as file_handler:
-    file_handler.write("Phones\n")
+    #file_handler.write("Phones\n")
     for item in bad_phones:
-        file_handler.write("{}\n".format(item))
+        file_handler.write("{},".format(item))
 

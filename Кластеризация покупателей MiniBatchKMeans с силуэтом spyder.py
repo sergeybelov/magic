@@ -115,7 +115,7 @@ def getPlt(start, finish, folds):
         print('n_clusters=',n_clusters)
             
         hdb_t1 = time.time()
-        hdb = MiniBatchKMeans(n_clusters=int(n_clusters),max_iter=125,max_no_improvement=25,batch_size=200,n_init=10,random_state=17).fit(svd_representation)
+        hdb = MiniBatchKMeans(n_clusters=int(n_clusters),max_iter=125,tol=.01,max_no_improvement=25,batch_size=200,n_init=10,random_state=17).fit(svd_representation)
         
         
         # Number of clusters in labels, ignoring noise if present.
@@ -199,8 +199,9 @@ def getPlt(start, finish, folds):
         del ith_cluster_silhouette_values
         del cluster_labels
         del sample_silhouette_values
-        del X       
+        del X
+    return hdb
     
     
-getPlt(7, 8, 5)
+hdb=getPlt(7, 8, 1)
 print('Done')
